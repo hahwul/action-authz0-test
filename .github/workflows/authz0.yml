@@ -50,7 +50,7 @@ jobs:
           body: |
             ## Authz0 result
             ```json
-            ${{jobs.authz0_scan.outputs.output}}
+            ${{needs.jobs.authz0_scan.outputs.output}}
             ```
 
           labels: |
