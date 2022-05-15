@@ -9,12 +9,36 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: main
-      - name: Authz0 - Set template
-        run: echo """template=`cat '.authz0.yml'`""" >> $GITHUB_ENV 
-      - name: zzzz
-        run: echo ${template}
       - name: Authz0 - Scan
         uses: hahwul/action-authz0@main
         id: authz0
         with:
-          template: $template
+          template: |
+            name: sample template
+            roles:
+            - name: Admin1
+            - name: Admin2
+            - name: SuperAdmin
+            - name: User
+            urls:
+            - url: https://www.hahwul.com
+              method: GET
+              contentType: ""
+              body: ""
+              allowRole:
+              - Admin
+              - Admin1
+              - SuperAdmin
+              - User
+              denyRole: []
+              alias: main
+            - url: https://www.hahwul.com/about/
+              method: GET
+              contentType: ""
+              body: ""
+              allowRole:
+              - Admin
+              - Admin1
+              - SuperAdmin
+              denyRole: []
+              alias: about
