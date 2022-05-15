@@ -42,3 +42,16 @@ jobs:
               - SuperAdmin
               denyRole: []
               alias: about
+      - name: Create an issue
+        uses: actions-ecosystem/action-create-issue@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          title: Authz0 result
+          body: |
+            ## Authz0 result
+            ```json
+            ${{jobs.authz0_scan.outputs.output}}
+            ```
+
+          labels: |
+            security
