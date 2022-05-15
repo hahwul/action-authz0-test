@@ -1,0 +1,18 @@
+on: [push]
+
+jobs:
+  authz0_scan:
+    runs-on: ubuntu-latest
+    name: Scanning
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: master
+      - name: Authz0 - Set template
+        run: template=$(cat '.authz0.yml')
+      - name: Authz0 - Scan
+        uses: hahwul/action-authz0@main
+        id: authz0
+        with:
+          template: $template
