@@ -10,9 +10,9 @@ jobs:
         with:
           ref: main
       - name: Authz0 - Set template
-        run: template=$(cat '.authz0.yml')
+        run: echo """template=`cat '.authz0.yml'`""" >> $GITHUB_ENV 
       - name: zzzz
-        run: echo $template
+        run: echo ${template}
       - name: Authz0 - Scan
         uses: hahwul/action-authz0@main
         id: authz0
