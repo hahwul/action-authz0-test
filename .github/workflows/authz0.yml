@@ -47,11 +47,6 @@ jobs:
         with:
           github_token: ${{ secrets.github_token }}
           title: Authz0 result
-          body: |
-            ## Authz0 result
-            ```json
-            ${{needs.jobs.authz0_scan.outputs.output}}
-            ```
-
+          body: ${{needs.jobs.authz0_scan.outputs.output}}
           labels: |
             security
